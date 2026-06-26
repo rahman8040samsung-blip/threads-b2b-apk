@@ -1,0 +1,6 @@
+{
+  "name": "B2B Threads",
+  "description": "Secure B2B social sharing and e-commerce platform inspired by Threads with AI content moderation and Indian cyber liability compliance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

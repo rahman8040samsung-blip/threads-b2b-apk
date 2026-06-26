@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <!-- Solid Background -->
+    <path
+        android:fillColor="#0A0F0D"
+        android:pathData="M0,0h100v100h-100z" />
+    <!-- Outer Shield Green -->
+    <path
+        android:fillColor="#00FF66"
+        android:pathData="M50,22 L31,29 V49 C31,60.5 39,71.2 50,74 C61,71.2 69,60.5 69,49 V29 L50,22 Z" />
+    <!-- Lock Check Checkmark -->
+    <path
+        android:fillColor="#0A0F0D"
+        android:pathData="M45,55 L37.3,47.3 L39.7,44.9 L45,50.3 L56.3,39 L58.7,41.4 L45,55 Z" />
+</vector>

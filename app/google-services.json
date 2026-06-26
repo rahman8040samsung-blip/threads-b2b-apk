@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "845104983452",
+    "project_id": "b2b-thread",
+    "storage_bucket": "b2b-thread.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845104983452:android:60f8c2101eff34e8e06c59",
+        "android_client_info": {
+          "package_name": "com.aistudio.b2bthreads.ksptwy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpiOxaLhfqV-Kur4o7Bzd2tqBYqimo0bw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
