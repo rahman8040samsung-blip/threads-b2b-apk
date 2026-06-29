@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-  namespace = "com.example"
+  namespace = "com.aistudio.b2bthreads.ksptwy"
   compileSdk { version = release(36) { minorApiLevel = 1 } }
 
   defaultConfig {
