@@ -35,16 +35,27 @@ android {
 }
 
   buildTypes {
-    release {
-      isCrunchPngs = false
-      isMinifyEnabled = false
-      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-      signingConfig = signingConfigs.getByName("release")
-    }
+
     debug {
-      signingConfig = signingConfigs.getByName("debugConfig")
+        isDebuggable = true
     }
-  }
+
+    release {
+        isCrunchPngs = false
+        isMinifyEnabled = false
+
+        proguardFiles(
+            getDefaultProguardFile("proguard-android-optimize.txt"),
+            "proguard-rules.pro"
+        )
+
+        val releaseSigning = signingConfigs.findByName("release")
+
+        if (releaseSigning != null) {
+            signingConfig = releaseSigning
+        }
+    }
+}
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
