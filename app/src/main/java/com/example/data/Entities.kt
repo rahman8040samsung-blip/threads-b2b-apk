@@ -24,6 +24,8 @@ fun UserProfile.isAdmin(): Boolean {
     return cleanId == "codecrafttechnologies" ||
            cleanId == "rahman8040samsung" ||
            cleanId == "rahman8040" ||
+           cleanId == "admin" ||
+           cleanId.contains("admin") ||
            email.lowercase() == "rahman8040samsung@gmail.com" ||
            role.equals("admin", ignoreCase = true) ||
            profileType.equals("SuperAdmin", ignoreCase = true)

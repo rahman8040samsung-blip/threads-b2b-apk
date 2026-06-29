@@ -1139,7 +1139,16 @@ class B2bViewModel(application: Application) : AndroidViewModel(application) {
     // --- Super Admin Overrides ---
     fun adminDeletePost(postId: Int) {
         viewModelScope.launch {
-            repository.deletePost(postId)
+            if (postId <= -1000) {
+                val index = -1000 - postId
+                val currentList = _firestorePosts.value
+                if (index in currentList.indices) {
+                    val fPost = currentList[index]
+                    deletePostFromFirestore(fPost.id)
+                }
+            } else {
+                repository.deletePost(postId)
+            }
             val log = ModerationLog(
                 postId = postId,
                 userId = "SUPER_ADMIN",
@@ -1148,6 +1157,25 @@ class B2bViewModel(application: Application) : AndroidViewModel(application) {
                 actionTaken = "POST_DELETED"
             )
             repository.saveModerationLog(log)
+        }
+    }
+
+    fun adminDeleteUser(userId: String) {
+        viewModelScope.launch {
+            repository.deleteProfile(userId)
+            val log = ModerationLog(
+                postId = null,
+                userId = userId,
+                postContent = "User profile and account permanently deleted by Admin",
+                triggerReason = "Manual Admin Account Purge",
+                actionTaken = "USER_DELETED"
+            )
+            repository.saveModerationLog(log)
+            addNotification(
+                title = "Account Purged 🗑️",
+                message = "The account for @$userId was permanently deleted by the super-admin.",
+                iconType = "security"
+            )
         }
     }
 
