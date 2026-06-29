@@ -30,11 +30,28 @@ android {
       keyPassword = System.getenv("KEY_PASSWORD")
     }
     create("debugConfig") {
-      val debugKeystorePath = file("${rootDir}/debug.keystore")
-      storeFile = debugKeystorePath
-      storePassword = "android"
-      keyAlias = "androiddebugkey"
-      keyPassword = "android"
+      // Prefer a project-level debug.keystore (./debug.keystore), then the developer's
+      // ~/.android/debug.keystore. If neither exists, leave the signing config unset so
+      // CI can supply a keystore via the workflow (recommended: store a keystore in a
+      // GitHub Secret and restore it at runtime).
+      val projectKeystore = rootProject.file("debug.keystore")
+      if (projectKeystore.exists()) {
+        storeFile = projectKeystore
+        storePassword = "android"
+        keyAlias = "androiddebugkey"
+        keyPassword = "android"
+      } else {
+        val homeKeystore = file("${System.getProperty("user.home")}/.android/debug.keystore")
+        if (homeKeystore.exists()) {
+          storeFile = homeKeystore
+          storePassword = "android"
+          keyAlias = "androiddebugkey"
+          keyPassword = "android"
+        } else {
+          // No keystore found locally; CI workflow should provide debug.keystore in the
+          // repository root before the build runs.
+        }
+      }
     }
   }
 
