@@ -21,7 +21,15 @@ object AppUpdateManager {
                 val repository = FirestoreUpdateRepository()
                 val latest = repository.getLatestVersion() ?: return@launch
 
-                val currentVersion = BuildConfig.VERSION_CODE.toLong()
+                val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+
+val currentVersion =
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+        packageInfo.longVersionCode
+    } else {
+        @Suppress("DEPRECATION")
+        packageInfo.versionCode.toLong()
+    }
 
                 if (!latest.published) return@launch
 
